@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Car Rental UI</string>
+    <string name="title_activity_spash">SpashActivity</string>
+</resources>
