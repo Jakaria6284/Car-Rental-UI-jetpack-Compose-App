@@ -1,3 +1,4 @@
+
 package com.kamaljakaria.carrentalui
 
 import android.content.Intent
@@ -58,53 +59,53 @@ class SpashActivity : ComponentActivity() {
         }
 
 
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.pexels_mayday),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 200.dp)
+            )
+
             Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.pexels_mayday),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(bottom = 200.dp)
-                )
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(Color.Transparent, Color.Black),
-                                startY = 0f,
-                                endY = 1100f
-                            )
-                        )
-
-
-                )
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(bottom = 80.dp, start = 30.dp),
-                    contentAlignment = Alignment.BottomStart
-                ) {
-                    Text(
-                        text = "Luxury Car\nRental\nService",
-                        style = TextStyle(
-                            fontSize = 40.sp,
-                            fontWeight = FontWeight.ExtraBold,
-                            color = Color.White,
-                            fontFamily = FontFamily.Monospace,
-                            shadow = Shadow(
-                                color = Color.Black,
-                                offset = Offset(2f, 2f), // Adjust the offset as needed
-                                blurRadius = 4f // Adjust the blur radius as needed
-                            )
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(Color.Transparent, Color.Black),
+                            startY = 0f,
+                            endY = 1100f
                         )
                     )
+
+
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 80.dp, start = 30.dp),
+                contentAlignment = Alignment.BottomStart
+            ) {
+                Text(
+                    text = "Luxury Car\nRental\nService",
+                    style = TextStyle(
+                        fontSize = 40.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.White,
+                        fontFamily = FontFamily.Monospace,
+                        shadow = Shadow(
+                            color = Color.Black,
+                            offset = Offset(2f, 2f), // Adjust the offset as needed
+                            blurRadius = 4f // Adjust the blur radius as needed
+                        )
+                    )
+                )
 
             }
 

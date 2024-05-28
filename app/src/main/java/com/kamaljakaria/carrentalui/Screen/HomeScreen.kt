@@ -2,6 +2,7 @@ package com.kamaljakaria.carrentalui.Screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,18 +27,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.kamaljakaria.carrentalui.Data.fetchAll
 import com.kamaljakaria.carrentalui.Data.getAllData
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,16 +58,18 @@ fun HomeScreen() {
             Text(text = "New Jersy", style = TextStyle(
                fontSize = 16.sp,
                 fontWeight = FontWeight.W900,
+                fontFamily = FontFamily.Monospace,
                 color = Color.White
 
             ),
-                modifier = Modifier.padding(top = 13.dp)
+                modifier = Modifier.padding(top = 13.dp, end = 10.dp)
                 )
         }
         Row( modifier = Modifier.padding(top = 30.dp)) {
             Text(text = "Your Ideal\nCar Awaits", style = TextStyle(
                 fontSize = 26.sp,
                 fontWeight = FontWeight.W900,
+                fontFamily = FontFamily.Monospace,
                 color = Color.White
 
             ),
@@ -89,7 +96,11 @@ fun HomeScreen() {
         LazyColumn(modifier = Modifier.padding(top = 30.dp)) {
             val myList= fetchAll()
             itemsIndexed(myList, itemContent = {index, item ->
-                lazyColumnItem(item = item)
+                lazyColumnItem(item = item, onClick = {
+                    navController.navigate("detail/${item.id}")
+
+
+                })
 
             })
         }
@@ -100,23 +111,81 @@ fun HomeScreen() {
 }
 
 @Composable
-fun lazyColumnItem(item:getAllData){
+fun lazyColumnItem(item:getAllData,onClick: ()->Unit){
 
     Box(modifier = Modifier
         .fillMaxWidth()
         .height(300.dp)
-        .padding(start = 10.dp, end = 10.dp, bottom = 5.dp)
-        .clip(RoundedCornerShape(25.dp))) {
+        .padding(start = 10.dp, end = 10.dp, bottom = 15.dp)
+        .clip(RoundedCornerShape(25.dp))
+        .clickable { onClick() }
+    ) {
+
+
+
+        Image(painter = painterResource(id = item.imag), contentDescription =null, contentScale = ContentScale.Crop,modifier = Modifier.offset(y = -70.dp))
+
         Box(modifier = Modifier
-            .fillMaxSize()) {
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(Color.Transparent, Color.Black),
+                    startY = 0f,
+                    endY = 390f
+                )
+            ))
+        Box(modifier = Modifier
+            .fillMaxSize(), contentAlignment = Alignment.BottomStart) {
 
-                Image(painter = painterResource(id = item.imag), contentDescription =null, contentScale = ContentScale.Crop)
+            Column {
+                Row {
+                    Text(text = "${item.name}", style = TextStyle(
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.W600,
+                        fontFamily = FontFamily.Monospace,
+                        color = Color.White
 
+                    ),
+                        modifier = Modifier.padding(start = 20.dp)
+                    )
+
+                }
+                Row {
+                    Text(text = "${item.quality}", style = TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.W400,
+                        fontFamily = FontFamily.Monospace,
+                        color = Color.White
+
+                    ),
+                        modifier = Modifier.padding(start = 20.dp,top = 13.dp)
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Text(text = "${item.price}", style = TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.W400,
+                        fontFamily = FontFamily.Monospace,
+                        color = Color.White
+
+                    ),
+                        modifier = Modifier.padding(top = 13.dp, end = 15.dp)
+                    )
+                }
+            }
 
 
         }
 
 
+
+
     }
-    Spacer(modifier = Modifier.height(20.dp))
-}
+
+
+
+
+
+
+    }
+

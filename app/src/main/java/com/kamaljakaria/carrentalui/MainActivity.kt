@@ -40,7 +40,9 @@ fun MainScreen() {
 
     Scaffold(
         bottomBar = {
-            BottomNavBar(navController = navController, items = navigationItems)
+            if (currentRoute !in listOf("detail/{id}")) {
+                BottomNavBar(navController = navController, items = navigationItems)
+            }
         },
         content = { innerPadding ->
 

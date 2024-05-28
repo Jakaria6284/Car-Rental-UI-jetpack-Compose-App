@@ -11,8 +11,10 @@ import androidx.compose.ui.graphics.Color
 fun ProfileScreen()
 {
     Column (
-        modifier = Modifier.fillMaxSize().background(Color.Black)
-    ){
+        modifier = Modifier.fillMaxSize().background(Color.White)
+
+        )
+    {
 
     }
 }
