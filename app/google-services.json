@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "90161531045",
+    "project_id": "luxary-car-7c9fb",
+    "storage_bucket": "luxary-car-7c9fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90161531045:android:4406721872984dc311254c",
+        "android_client_info": {
+          "package_name": "com.kamaljakaria.carrentalui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeDqyHhYPzIXj5y8A7_Sc4tEnGvvMEtA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
